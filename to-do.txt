@@ -1,0 +1,4 @@
+1. Set up Models first
+2. Once you get Models in, you can run seeds they have for you
+3. If you set it up correctly then the database should be filled 
+4. Then fill out create, read, update, delete for CATEGORY and PRODUCT endpoints

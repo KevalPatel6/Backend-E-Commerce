@@ -33,32 +33,32 @@ try {
 
 router.post('/', async (req, res) => {
   // create a new category.
-  const newCategory = await Category.create({
-    category_name: req.body.category_name
-  })
+  try {
+    const newCategory = await Category.create({
+      category_name: req.body.category_name
+    })
+    res.status(200).json(newCategory)
+  } catch (err) {
+    res.status(500).json(err)
+  }
 });
 
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   try {
-    const categoryData = await Category.update({
-      category_name: req.body.category_name,
-      where: {
-        id: req.params.id,
-      }
-
-    })
-//     if(categoryData===req.body.category_name){
-//  console.log('Category Updated Successfully')
-//     }
-//     else {
-//       console.log('Could not find category or no updates were made')
-//     }
+  
+      let  categoryData = await Category.update({
+        category_name: req.body.category_name},
+        {
+        where: {
+          id: req.params.id,
+        }
+      })
+     
+    return res.status(200).json(categoryData)
     
-    
-
-    res.status(200).json(categoryData)
   } catch (err) {
+    console.log(err)
     res.status(500).json(err)
   }
   });

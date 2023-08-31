@@ -69,8 +69,11 @@ router.put('/:id', async (req, res) => {
         }
       })
      
+      if(previousCategory.category_name===req.body.category_name){
+        return res.status(404).json({message: 'Error: This category was already updated with the category name. Change the category_name to update again'})
+      }
 
-       if(categoryData[0]===0){
+      else if(categoryData[0]===0){
         return res.status(404).json({message: 'There is no category with this id'})
       }
 

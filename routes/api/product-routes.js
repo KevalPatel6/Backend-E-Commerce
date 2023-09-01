@@ -55,7 +55,8 @@ router.post('/', (req, res) => {
         
       }
       // if no product tags, just respond
-      res.status(200).json(product);
+      console.log(product)
+      res.status(200).json({message: `Product ${req.body.product_name} was successfully added to the database` });
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
@@ -68,6 +69,8 @@ router.post('/', (req, res) => {
   // update products by using its id 
 router.put('/:id', (req, res) => {
   // update product data
+
+
   Product.update(req.body, {
     where: {
       id: req.params.id,
@@ -102,7 +105,7 @@ router.put('/:id', (req, res) => {
         });
       }
 
-      return res.json(product);
+      return res.json({message: `Product was successfullyl updated in the database`});
     })
     .catch((err) => {
       console.log(err);
@@ -119,7 +122,7 @@ router.delete('/:id', async (req, res) => {
       },
      
     })
-    if(!categoryData){
+    if(!productsData){
       res.status(404).json({message: 'There is no product with this id'})
       return;
     }

@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
      },
      include: [{ model: Product }]
    })
-   if(!categoryData){
+   if(!tagData){
     res.status(404).json({message: 'There is no tag with this id'})
   }
 
@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
     //Finding previous tag by pk//
-  let previousTag = await Category.findByPk(req.params.id)
+  let previousTag = await Tag.findByPk(req.params.id)
 
  try {
   //Checking to see if the body has a length//
@@ -76,7 +76,7 @@ router.put('/:id', async (req, res) => {
    if(previousTag.tag_name===req.body.tag_name){
     return res.status(404).json({message: 'Error: This tag was already updated with the same tag name. Change the tag_name to update again'})
   }
-  else if(categoryData[0]===0){
+  else if(Tag[0]===0){
     return res.status(404).json({message: 'There is no tag with this id'})
   }
 
